@@ -7,11 +7,11 @@ class TrieNode{
 
 class Trie{
     constructor(){
-        this.root =new TrieNode();
+        this.root=new TrieNode();
     }
     insert(word){
         let node=this.root;
-        for(let ch of word) {
+        for(let ch of word){
             if(!node.children[ch]) {
                 node.children[ch]=new TrieNode();
             }
@@ -27,7 +27,7 @@ class Trie{
         }
         return this.startsWith(node,prefix);
     }
-    startsWith(node, prefix){
+    startsWith(node,prefix){
         let results=[];
         if(node.isEndOfWord) results.push(prefix);
         for(let ch in node.children) {
@@ -61,15 +61,15 @@ const countries=[
 ];
 
 const trie=new Trie();
-countries.forEach(country=>trie.insert(country.toLowerCase()));
-const searchInput = document.querySelector(`#search`);
-const suggestionsList = document.querySelector(`#suggestions`);
-searchInput.addEventListener("input", function () {
-    const query = this.value.toLowerCase();
+countries.forEach((country)=>trie.insert(country.toLowerCase()));
+const searchInput=document.querySelector(`#search`);
+const suggestionsList=document.querySelector(`#suggestions`);
+searchInput.addEventListener("input",function(){
+    const query=this.value.toLowerCase();
     suggestionsList.innerHTML="";
-    if (query){
+    if(query){
         const matches=trie.search(query);
-        matches.forEach(match=>{
+        matches.forEach((match)=>{
             const li=document.createElement("li");
             li.textContent=match;
             li.addEventListener("click",()=>{
